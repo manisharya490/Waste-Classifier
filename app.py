@@ -13,8 +13,8 @@ import os
 # ---------------------------------------------------
 # ⚙️ Configuration
 # ---------------------------------------------------
-MODEL_PATH = 'waste_classifier_model.h5'
-CLASSES_PATH = 'class_indices.json'
+MODEL_PATH = 'waste_classifier_model_finetuned.h5'
+CLASSES_PATH = 'class_indices_new.json'
 TARGET_SIZE = (224, 224)
 
 app = Flask(__name__, static_folder="static")
@@ -26,17 +26,25 @@ CORS(app)
 model = None
 CLASS_LABELS = []
 
+
+
 try:
+    if MODEL_PATH is None:
+        raise FileNotFoundError('No model file found in preferences')
+
     model = load_model(MODEL_PATH)
+
+    if CLASSES_PATH is None:
+        raise FileNotFoundError('No class indices file found in preferences')
 
     with open(CLASSES_PATH, "r") as f:
         class_indices = json.load(f)
 
     CLASS_LABELS = sorted(class_indices, key=class_indices.get)
-    print("✅ Model loaded successfully:", CLASS_LABELS)
+    print(f"✅ Model loaded successfully: {MODEL_PATH} -> {CLASSES_PATH}")
 
 except Exception as e:
-    print("❌ Error loading model:", e)
+    print("❌ Error loading model or labels:", e)
 
 
 # ---------------------------------------------------

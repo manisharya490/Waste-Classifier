@@ -1,0 +1,19 @@
+# Ignore dataset folder
+garbage_dataset/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment files
+.env
+.venv
+ENV/
+venv/
+
+# OS files
+.DS_Store
+Thumbs.db
