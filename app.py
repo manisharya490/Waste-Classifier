@@ -13,8 +13,8 @@ import os
 # ---------------------------------------------------
 # ⚙️ Configuration
 # ---------------------------------------------------
-MODEL_PATH = 'waste_classifier_model_finetuned.h5'
-CLASSES_PATH = 'class_indices_new.json'
+MODEL_PATH = 'waste_classifier_model_finetuned.h5'  # Use the latest improved model
+CLASSES_PATH = 'class_indices.json'  # Use the class indices generated during training
 TARGET_SIZE = (224, 224)
 
 app = Flask(__name__, static_folder="static")
